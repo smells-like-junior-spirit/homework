@@ -4,3 +4,13 @@
     border-radius: 20px;
     background-color: rgb(211, 211, 211);
 }
+
+.light {
+    background-color: rgb(211, 211, 211);
+    color: black;
+}
+
+.dark {
+    background-color: rgb(28, 27, 27);
+    color: white;
+}

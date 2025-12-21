@@ -5,3 +5,13 @@
     background-color: lightgrey;
     display: flex;
 }
+
+.light {
+    background-color: lightgrey;
+    color: black;
+}
+
+.dark {
+    background-color: rgb(28, 27, 27);
+    color: white;
+}

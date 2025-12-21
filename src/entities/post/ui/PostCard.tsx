@@ -1,14 +1,18 @@
 import stylesPostCard from './PostCard.module.css'
+import { useTheme } from '../../../shared/lib/theme/useTheme';
 
 const PostCard = ({ userId, title, body }: {
     userId: number,
     title: string,
     body: string,
 }) => {
+
+    const { theme, toggleTheme } = useTheme();
+
     return (
         <>
-            <div className={stylesPostCard.postCard}>
-                <div className={stylesPostCard.postCard__id}>
+            <div className={`${stylesPostCard.postCard} ${theme === 'light' ? stylesPostCard.light : stylesPostCard.dark}`}>
+                <div className={stylesPostCard.id}>
                     {userId}
                 </div>
 

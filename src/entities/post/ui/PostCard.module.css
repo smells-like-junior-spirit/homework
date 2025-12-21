@@ -1,13 +1,11 @@
 .postCard {
     padding: 5px;
     margin: 20px 10px 10px;
-    border: 1px solid black;
     border-radius: 20px;
-    background-color: white;
     display: flex;
 }
 
-.postCard__id {
+.id {
     border: 1px solid black;
     border-radius: 20px;
     min-width: 100px;
@@ -26,4 +24,16 @@
 
 .postCard__main__body {
     text-align: left;
+}
+
+.light {
+    background-color: rgb(211, 211, 211);
+    border: 1px solid black;
+    color: black;
+}
+
+.dark {
+    background-color: rgb(28, 27, 27);
+    border: 1px solid white;
+    color: white;
 }

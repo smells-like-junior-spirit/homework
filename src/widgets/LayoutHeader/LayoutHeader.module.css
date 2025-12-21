@@ -2,5 +2,21 @@
     padding: 20px;
     margin: 30px 20px;
     border-radius: 20px;
+}
+
+.other {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    gap: 30px;
+}
+
+.light {
     background-color: lightgrey;
+    color: black;
+}
+
+.dark {
+    background-color: rgb(28, 27, 27);
+    color: white;
 }

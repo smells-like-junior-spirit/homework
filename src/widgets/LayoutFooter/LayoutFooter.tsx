@@ -1,8 +1,8 @@
-// import './css/LayoutFooter.css'
+import stylesFooter from './LayoutFooter.module.css'
 
 const LayoutFooter = () => {
     return (
-        <h2>LayoutFooter</h2>
+        <footer className={stylesFooter.footer}>Homework. Копирование и распространение НЕ преследуется по закону</footer>
     )
 }
 

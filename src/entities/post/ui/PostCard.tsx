@@ -1,22 +1,26 @@
-// import './css/PostCard.css'
+import stylesPostCard from './PostCard.module.css'
 
-
-const PostCard = () => {
+const PostCard = ({ userId, title, body }: {
+    userId: number,
+    title: string,
+    body: string,
+}) => {
     return (
         <>
-            <div className='userId'>
-                userId
-                {/* {userId} */}
-            </div>
+            <div className={stylesPostCard.postCard}>
+                <div className={stylesPostCard.postCard__id}>
+                    {userId}
+                </div>
 
-            <div className='title'>
-                title
-                {/* {title} */}
-            </div>
+                <div className={stylesPostCard.postCard__main}>
+                    <div className={stylesPostCard.postCard__main__title}>
+                        {title}
+                    </div>
 
-            <div className='body'>
-                body
-                {/* {body} */}
+                    <div className={stylesPostCard.postCard__main__body}>
+                        {body}
+                    </div>
+                </div>
             </div>
         </>
     )

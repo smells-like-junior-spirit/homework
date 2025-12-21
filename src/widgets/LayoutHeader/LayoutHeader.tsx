@@ -1,8 +1,10 @@
-// import './css/LayoutHeader.css'
+import stylesHeader from './LayoutHeader.module.css'
 
 const LayoutHeader = () => {
     return (
-        <h1>Header</h1>
+        <header className={stylesHeader.header}>
+            <h1>Homework форум</h1>
+        </header>
     )
 }
 

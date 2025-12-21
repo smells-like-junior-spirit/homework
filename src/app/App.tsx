@@ -40,7 +40,7 @@ function App() {
   return (
     <>
       <LayoutHeader />
-      <MainLayout />
+      <MainLayout posts={posts} />
       <LayoutFooter />
     </>
   )

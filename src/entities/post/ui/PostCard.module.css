@@ -1,0 +1,29 @@
+.postCard {
+    padding: 5px;
+    margin: 20px 10px 10px;
+    border: 1px solid black;
+    border-radius: 20px;
+    background-color: white;
+    display: flex;
+}
+
+.postCard__id {
+    border: 1px solid black;
+    border-radius: 20px;
+    min-width: 100px;
+}
+
+.postCard__main {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.postCard__main__title {
+    font-weight: bold;
+}
+
+.postCard__main__body {
+    text-align: left;
+}

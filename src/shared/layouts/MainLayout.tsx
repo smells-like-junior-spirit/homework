@@ -1,15 +1,22 @@
 import PostList from '../../widgets/PostList/PostList'
-// import './css/MainLayout.css'
+import stylesMain from './MainLayout.module.css'
 
-const MainLayout = () => {
+interface Post {
+    userId: number;
+    id: number;
+    title: string;
+    body: string;
+}
 
+const MainLayout = ({ posts }: { posts: Post[] }) => {
 
-return (
-    <>
-        <h2>Main Layout</h2>
-        <PostList />
-    </>
-)
+    return (
+        <>
+            <div className={stylesMain.main}>
+                <PostList posts={posts} />
+            </div>
+        </>
+    )
 }
 
 export default MainLayout;

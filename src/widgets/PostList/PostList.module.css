@@ -8,11 +8,17 @@
 }
 
 .postList__header {
-    background-color: rgb(75, 75, 214);
     border-radius: 10px;
-    color: white;
     display: flex;
     padding: 5px;
 }
 
-.postList__main {}
+.light {
+    background-color: rgb(75, 75, 214);
+    color: white;
+}
+
+.dark {
+    background-color: rgb(0, 0, 135);
+    color: white;
+}

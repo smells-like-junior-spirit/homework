@@ -1,6 +1,6 @@
 import stylesPostList from './PostList.module.css'
-
 import PostCard from "../../entities/post/ui/PostCard";
+import { useTheme } from '../../shared/lib/theme/useTheme';
 
 interface Post {
     userId: number;
@@ -11,10 +11,11 @@ interface Post {
 
 const PostList = ({ posts }: { posts: Post[] }) => {
 
+    const { theme, toggleTheme } = useTheme();
 
     return (
         <div className={stylesPostList.postList}>
-            <div className={stylesPostList.postList__header}>
+            <div className={`${stylesPostList.postList__header} ${theme === 'light' ? stylesPostList.light : stylesPostList.dark}`}>
                 Список Postlist
             </div>
 

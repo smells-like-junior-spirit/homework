@@ -1,0 +1,18 @@
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 140px;
+}
+
+.light {
+    background-color: rgb(255, 255, 255);
+    color: black;
+    border: 1px solid rgb(28, 27, 27);
+}
+
+.dark {
+    background-color: rgb(28, 27, 27);
+    color: white;
+    border: 1px solid rgb(255, 255, 255);
+}

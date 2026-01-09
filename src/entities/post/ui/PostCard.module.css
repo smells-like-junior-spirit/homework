@@ -6,6 +6,9 @@
 }
 
 .id {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: 1px solid black;
     border-radius: 20px;
     min-width: 100px;
@@ -27,13 +30,13 @@
 }
 
 .light {
-    background-color: rgb(211, 211, 211);
+    background-color: rgb(139, 174, 102);
     border: 1px solid black;
     color: black;
 }
 
 .dark {
-    background-color: rgb(28, 27, 27);
+    background-color: rgb(156, 171, 132);
     border: 1px solid white;
-    color: white;
+    color: black;
 }

@@ -16,7 +16,7 @@ const Modal = ({ isOpen, onClose, children }: IModal) => {
             <div className={styles.content}>
             <div className={styles.window} onClick={(e) => e.stopPropagation()} >
                     <h2>Информация о проекте</h2>
-                    <p>Здесь размещена текущая информация о проекте. Это приложение для просмотра постов и комментариев, основанное на публичном API JSONPlaceholder.Данный проект создан с использованием инструментов React, Vite, Typescript, CSSModules.</p>
+                    <p>Здесь размещена текущая информация о проекте. Это приложение для просмотра постов и комментариев, основанное на публичном API JSONPlaceholder. Данный проект создан с использованием инструментов React, Vite, Typescript, CSSModules.</p>
                     <button className={styles.button} onClick={onClose}>Закрыть окно</button>
                 </div>
             </div >

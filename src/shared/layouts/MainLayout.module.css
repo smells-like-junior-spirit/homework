@@ -6,11 +6,11 @@
 }
 
 .light {
-    background-color: rgb(211, 211, 211);
+    background-color: rgb(246, 240, 215);
     color: black;
 }
 
 .dark {
-    background-color: rgb(28, 27, 27);
+    background-color: rgb(27, 33, 26);
     color: white;
 }

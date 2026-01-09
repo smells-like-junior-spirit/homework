@@ -9,9 +9,17 @@ interface Post {
     body: string;
 }
 
+type Theme = 'light' | 'dark';
+
+interface IntThemeContext {
+    theme: Theme;
+    toggleTheme: () => void;
+}
+
+
 const PostList = ({ posts }: { posts: Post[] }) => {
 
-    const { theme, toggleTheme } = useTheme();
+    const { theme } = useTheme() as IntThemeContext;
 
     return (
         <div className={stylesPostList.postList}>

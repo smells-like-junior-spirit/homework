@@ -1,18 +1,14 @@
 .overlay {
     position: fixed;
     width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-}
-
-.content {
     min-height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.window {
+.content {
     max-width: 60%;
     padding: 20px;
     border-radius: 20px;
@@ -22,6 +18,18 @@
     align-items: center;
     justify-content: center;
     gap: 30px;
+}
+
+.modalHeader {
+    display: flex;
+}
+
+.modalBody {
+    display: flex;
+}
+
+.modalFooter {
+    display: flex;
 }
 
 .button {

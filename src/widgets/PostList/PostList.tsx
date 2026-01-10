@@ -2,7 +2,7 @@ import stylesPostList from './PostList.module.css'
 import PostCard from "../../entities/post/ui/PostCard";
 import { useTheme } from '../../shared/lib/theme/useTheme';
 
-interface Post {
+interface IPost {
     userId: number;
     id: number;
     title: string;
@@ -11,15 +11,15 @@ interface Post {
 
 type Theme = 'light' | 'dark';
 
-interface IntThemeContext {
+interface IThemeContext {
     theme: Theme;
     toggleTheme: () => void;
 }
 
 
-const PostList = ({ posts }: { posts: Post[] }) => {
+const PostList = ({ posts }: { posts: IPost[] }) => {
 
-    const { theme } = useTheme() as IntThemeContext;
+    const { theme } = useTheme() as IThemeContext;
 
     return (
         <div className={stylesPostList.postList}>

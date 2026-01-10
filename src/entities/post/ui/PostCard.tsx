@@ -1,13 +1,21 @@
 import stylesPostCard from './PostCard.module.css'
 import { useTheme } from '../../../shared/lib/theme/useTheme';
 
+
+type Theme = 'light' | 'dark';
+
+interface IThemeContext {
+    theme: Theme;
+    toggleTheme: () => void;
+}
+
 const PostCard = ({ userId, title, body }: {
     userId: number,
     title: string,
     body: string,
 }) => {
 
-    const { theme, toggleTheme } = useTheme();
+    const { theme } = useTheme() as IThemeContext;
 
     return (
         <>

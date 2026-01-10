@@ -40,7 +40,9 @@ body {
   align-items: start;
   justify-content: center;
   min-width: 320px;
+  width: 100%;
   min-height: 100vh;
+  flex-grow: 1;
   background-color: rgba(128, 128, 128, 0.5);
   background-color: rgb(197, 216, 157);
 }

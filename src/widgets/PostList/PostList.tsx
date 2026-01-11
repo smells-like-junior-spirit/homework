@@ -1,11 +1,22 @@
 import stylesPostList from './PostList.module.css'
 import PostCard from "../../entities/post/ui/PostCard";
 import { useTheme } from '../../shared/lib/theme/useTheme';
+import PostLengthFilter from '../../features/PostLengthFilter/ui/PostLengthFilter';
+import { useState, useMemo } from 'react';
+import filterByLength from '../../features/PostLengthFilter/lib/filterByLength';
 
 interface IPost {
     userId: number;
     id: number;
     title: string;
+    body: string;
+}
+
+interface IComments {
+    postId: number;
+    id: number;
+    name: string;
+    email: string;
     body: string;
 }
 
@@ -17,19 +28,28 @@ interface IThemeContext {
 }
 
 
-const PostList = ({ posts }: { posts: IPost[] }) => {
+const PostList = ({ posts, comments }: {
+    posts: IPost[],
+    comments: IComments[]
+}) => {
 
     const { theme } = useTheme() as IThemeContext;
+
+    const [minLength, setMinLength] = useState<number>(0);
+
+    const filteredPosts = useMemo(() => {
+        return filterByLength(posts, minLength);
+    },[posts, minLength])
 
     return (
         <div className={stylesPostList.postList}>
             <div className={`${stylesPostList.postList__header} ${theme === 'light' ? stylesPostList.light : stylesPostList.dark}`}>
-                Список Postlist
+                <PostLengthFilter setMinLength={setMinLength}></PostLengthFilter>
             </div>
 
-            <div className={stylesPostList.postList__main}>
-                {posts.map((post) => (
-                    <PostCard key={post.id} userId={post.userId} title={post.title} body={post.body} />
+            <div className={stylesPostList.main}>
+                {filteredPosts.map((post) => (
+                    < PostCard key={post.id} id={post.id} userId={post.userId} title={post.title} body={post.body} comments={comments} />
                 ))}
             </div>
 

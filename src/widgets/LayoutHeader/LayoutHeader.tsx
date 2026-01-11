@@ -21,7 +21,7 @@ const LayoutHeader = () => {
 
     return (
         <header className={`${stylesHeader.header} ${theme === 'light' ? stylesHeader.light : stylesHeader.dark}`}>
-            <h1 className={stylesHeader.h1}>Homework форум</h1>
+            <h1 className={stylesHeader.h1}>Добро пожаловать на Homework форум</h1>
             <div className={stylesHeader.btns}>
                 <Button
                     onClickHandler={() => setIsModalOpen(true)}

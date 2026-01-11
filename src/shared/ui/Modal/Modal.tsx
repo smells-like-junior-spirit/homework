@@ -2,8 +2,8 @@ import styles from './Modal.module.css'
 import { createPortal } from "react-dom";
 
 interface IModal {
-    isOpen: boolean;
-    onClose: () => void;
+    isOpen?: boolean;
+    onClose?: () => void;
     children: React.ReactNode;
 }
 
@@ -13,17 +13,38 @@ const Modal = ({ isOpen, onClose, children }: IModal) => {
 
     return (createPortal(
         <div className={styles.overlay} onClick={onClose}>
-            <div className={styles.content}>
-            <div className={styles.window} onClick={(e) => e.stopPropagation()} >
-                    <h2>Информация о проекте</h2>
-                    <p>Здесь размещена текущая информация о проекте. Это приложение для просмотра постов и комментариев, основанное на публичном API JSONPlaceholder. Данный проект создан с использованием инструментов React, Vite, Typescript, CSSModules.</p>
-                    <button className={styles.button} onClick={onClose}>Закрыть окно</button>
-                </div>
-            </div >
+            <div className={styles.content} onClick={(e) => e.stopPropagation()} >
+                {children}
+                {/* <button className={styles.button} onClick={onClose}>Закрыть окно</button> */}
+            </div>
         </div >,
-    document.body
+        document.body
     )
     )
 }
+
+const ModalHeader = ({ children }: IModal) => {
+    return (
+        <div className={styles.modalHeader}>{children}</div>
+    )
+}
+
+Modal.Header = ModalHeader;
+
+const ModalBody = ({ children }: IModal) => {
+    return (
+        <div className={styles.modalBody}>{children}</div>
+    )
+}
+
+Modal.Body = ModalBody;
+
+const ModalFooter = ({ children }: IModal) => {
+    return (
+        <div className={styles.modalFooter}>{children}</div>
+    )
+}
+
+Modal.Footer = ModalFooter;
 
 export default Modal;

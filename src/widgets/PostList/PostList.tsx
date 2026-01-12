@@ -12,7 +12,7 @@ interface IPost {
     body: string;
 }
 
-interface IComments {
+interface IComment {
     postId: number;
     id: number;
     name: string;
@@ -30,7 +30,7 @@ interface IThemeContext {
 
 const PostList = ({ posts, comments }: {
     posts: IPost[],
-    comments: IComments[]
+    comments: IComment[]
 }) => {
 
     const { theme } = useTheme() as IThemeContext;

@@ -6,6 +6,7 @@ import { ThemeProvider } from '../shared/lib/theme/useTheme';
 function App() {
 
   return (
+
     <ThemeProvider>
       <LayoutHeader />
       <MainLayout />

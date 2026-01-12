@@ -1,0 +1,53 @@
+import { useParams } from "react-router";
+import usePosts from "../features/PostList/model/hooks/usePosts";
+import styles from '../entities/post/ui/PostCard.module.css'
+import { useTheme } from "../shared/lib/theme/useTheme";
+
+type Theme = 'light' | 'dark';
+
+interface IThemeContext {
+    theme: Theme;
+    toggleTheme: () => void;
+}
+
+const UsersIdTodosPage = () => {
+
+    const { id } = useParams<{ id: string }>();
+    const userId = Number(id);
+
+    const { isLoading, todos } = usePosts();
+    const filteredByUserIdTodos = todos.filter(todo => todo.userId === userId);
+
+    const { theme } = useTheme() as IThemeContext;
+
+    if (isLoading) {
+        return <div>Идет загрузка...</div>
+    }
+
+    return (
+        <div>UsersIdPostsPage {id}
+            {filteredByUserIdTodos.map((todo) =>
+                <div key={todo.id} className={`${styles.postCard} ${theme === 'light' ? styles.light : styles.dark}`}>
+                    <div className={styles.id}>
+                        {todo.id}
+                    </div>
+
+                    <div className={styles.main}>
+                        <div className={styles.postCard__main__post}>
+                            <div className={styles.postCard__main__title}>
+                                {todo.title}
+                            </div>
+
+                            <div className={styles.postCard__main__body}>
+                                Status: {todo.completed ? <strong>completed</strong> : `incompleted`}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+        </div>
+    )
+
+}
+
+export default UsersIdTodosPage;

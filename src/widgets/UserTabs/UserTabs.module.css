@@ -1,0 +1,36 @@
+.tabs {
+    padding: 20px;
+    margin: 10px 20px;
+    border-radius: 20px;
+    background-color: lightgrey;
+    display: flex;
+    gap: 20px;
+}
+
+.tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 140px;
+
+    border-radius: 20px;
+    background-color: rgb(124, 182, 220);
+    color: black;
+    border: 1px solid rgb(255, 255, 255);
+}
+
+.active {
+    border: 3px solid rgb(46, 14, 188);
+}
+
+tabs.light {
+    background-color: rgb(255, 255, 255);
+    color: black;
+    border: 1px solid rgb(28, 27, 27);
+}
+
+tabs.dark {
+    background-color: rgb(28, 27, 27);
+    color: white;
+    border: 1px solid rgb(255, 255, 255);
+}

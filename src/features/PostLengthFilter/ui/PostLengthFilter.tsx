@@ -6,7 +6,7 @@ interface ISetMinLenght {
 
 const PostLengthFilter = ({ setMinLength }: ISetMinLenght) => {
 
-    const [length, setLength] = useState<number>(100);
+    const [length, setLength] = useState<number>(0);
 
     const onChangeHandler = (e: any) => {
         const value = Number(e.target.value);

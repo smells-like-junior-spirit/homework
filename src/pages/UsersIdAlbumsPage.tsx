@@ -1,7 +1,11 @@
 import { useParams } from "react-router";
-import usePosts from "../features/PostList/model/hooks/usePosts";
+// import usePosts from "../features/PostList/model/hooks/usePosts";
 import styles from '../entities/post/ui/PostCard.module.css'
 import { useTheme } from "../shared/lib/theme/useTheme";
+import { useGetAlbumsQuery } from "../entities/albums/api/albumsApi";
+import { useSelector } from "react-redux";
+// import { selectAllAlbums } from "../entities/users/model/slice/userSlice";
+import { selectAlbumsByUserId } from "../entities/users/model/slice/userSlice";
 
 type Theme = 'light' | 'dark';
 
@@ -15,8 +19,14 @@ const UsersIdAlbumsPage = () => {
     const { id } = useParams<{ id: string }>();
     const userId = Number(id);
 
-    const { isLoading, albums } = usePosts();
-    const filteredByUserIdAlbums = albums.filter(album => album.userId === userId);
+    // const { isLoading, albums } = usePosts();
+    const { isLoading } = useGetAlbumsQuery();
+
+    // const filteredByUserIdAlbums = albums.filter(album => album.userId === userId);
+    // const filteredByUserIdAlbums = useSelector((state) =>
+    //     selectAllAlbums(state).filter(album => album.userId === userId));
+    const filteredByUserIdAlbums = useSelector((state) =>
+        selectAlbumsByUserId(state, userId));
 
     const { theme } = useTheme() as IThemeContext;
 

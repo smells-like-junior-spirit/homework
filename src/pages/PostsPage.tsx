@@ -1,6 +1,9 @@
-import usePosts from "../features/PostList/model/hooks/usePosts";
+// import usePosts from "../features/PostList/model/hooks/usePosts";
 import styles from '../entities/post/ui/PostCard.module.css'
 import { useTheme } from "../shared/lib/theme/useTheme";
+import { useGetPostsQuery } from '../entities/posts/api/postsApi'
+import { useSelector } from 'react-redux';
+import { selectAllPosts } from '../entities/posts/model/slice/postSlice';
 
 type Theme = 'light' | 'dark';
 
@@ -11,7 +14,11 @@ interface IThemeContext {
 
 const PostsPage = () => {
 
-    const { isLoading, posts } = usePosts();
+    // const { isLoading, posts } = usePosts();
+
+    // const {data: posts, isLoading} = useGetPostsQuery();
+    const { isLoading } = useGetPostsQuery();
+    const posts = useSelector(selectAllPosts);
 
     const { theme } = useTheme() as IThemeContext;
 
@@ -20,7 +27,7 @@ const PostsPage = () => {
     }
 
     return (
-        <div>Список постов: 
+        <div>Список постов:
             {posts.map((post) =>
                 <div key={post.id} className={`${styles.postCard} ${theme === 'light' ? styles.light : styles.dark}`}>
                     <div className={styles.id}>

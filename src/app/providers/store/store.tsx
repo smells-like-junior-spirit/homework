@@ -23,3 +23,7 @@ export const store = configureStore( {
             todosApi.middleware
         ),
 });
+
+export type AppStore = typeof store;
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

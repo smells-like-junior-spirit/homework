@@ -5,17 +5,9 @@ import Modal from '../../shared/ui/Modal/Modal'
 import Button from '../../shared/ui/Button/Button'
 import ThemeSwitcher from '../../features/ThemeSwitcher/ThemeSwitcher'
 
-
-type Theme = 'light' | 'dark';
-
-interface IntThemeContext {
-    theme: Theme;
-    toggleTheme: () => void;
-}
-
 const LayoutHeader = () => {
 
-    const { theme } = useTheme() as IntThemeContext;
+    const { theme } = useTheme();
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 

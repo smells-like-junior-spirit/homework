@@ -3,16 +3,9 @@ import { useParams } from 'react-router';
 import { NavLink } from 'react-router';
 import styles from './UserTabs.module.css'
 
-type Theme = 'light' | 'dark';
-
-interface IntThemeContext {
-    theme: Theme;
-    toggleTheme: () => void;
-}
-
 const UserTabs = () => {
 
-    const { theme } = useTheme() as IntThemeContext;
+    const { theme } = useTheme();
     const { id } = useParams();
 
     return (

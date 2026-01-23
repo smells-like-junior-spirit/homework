@@ -4,36 +4,17 @@ import { useTheme } from '../../shared/lib/theme/useTheme';
 import PostLengthFilter from '../../features/PostLengthFilter/ui/PostLengthFilter';
 import { useState, useMemo } from 'react';
 import filterByLength from '../../features/PostLengthFilter/lib/filterByLength';
+import {type IPost} from '../../entities/posts/model/types';
+import { type IComment } from '../../entities/comments/model/types';
 
-interface IPost {
-    userId: number;
-    id: number;
-    title: string;
-    body: string;
-}
-
-interface IComment {
-    postId: number;
-    id: number;
-    name: string;
-    email: string;
-    body: string;
-}
-
-type Theme = 'light' | 'dark';
-
-interface IThemeContext {
-    theme: Theme;
-    toggleTheme: () => void;
-}
-
-
-const PostList = ({ posts, comments }: {
+interface PostListProps {
     posts: IPost[],
     comments: IComment[]
-}) => {
+}
 
-    const { theme } = useTheme() as IThemeContext;
+const PostList = ({ posts, comments }: PostListProps) => {
+
+    const { theme } = useTheme();
 
     const [minLength, setMinLength] = useState<number>(0);
 

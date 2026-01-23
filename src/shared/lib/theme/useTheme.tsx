@@ -1,17 +1,15 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useState, type PropsWithChildren } from 'react'
 
-type Theme = 'light' | 'dark';
+export type Theme = 'light' | 'dark';
 
-interface IntThemeContext {
+export interface IThemeContext {
     theme: Theme;
     toggleTheme: () => void;
 }
 
-export const ThemeContext = createContext<IntThemeContext | undefined>(undefined);
+export const ThemeContext = createContext<IThemeContext | undefined>(undefined);
 
-export const ThemeProvider = ({ children }: {
-    children: React.ReactNode
-}) => {
+export const ThemeProvider = ({ children }: PropsWithChildren) => {
 
     const [theme, setTheme] = useState<Theme>('light');
 
@@ -28,6 +26,10 @@ export const ThemeProvider = ({ children }: {
     )
 }
 
-export const useTheme = () => {
-    return useContext(ThemeContext);
+export const useTheme = () : IThemeContext => {
+    const context = useContext(ThemeContext);
+    if (context === undefined) {
+        throw new Error('ThemeContext underfined')
+    }
+    return context;
 };

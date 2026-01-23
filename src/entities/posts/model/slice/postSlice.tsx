@@ -1,21 +1,10 @@
 import { createEntityAdapter, createSlice, createSelector } from "@reduxjs/toolkit";
 import { postsApi } from "../../api/postsApi";
 import { commentsApi } from "../../../comments/api/commentsApi";
+import { type IPost } from "../types";
+import { type IComment } from "../../../comments/model/types";
+import { type RootState } from '../../../../app/providers/store/store'
 
-interface IPost {
-    userId: number;
-    id: number;
-    title: string;
-    body: string;
-}
-
-interface IComment {
-    postId: number;
-    id: number;
-    name: string;
-    email: string;
-    body: string;
-}
 const postsAdapter = createEntityAdapter<IPost>();
 const commentsAdapter = createEntityAdapter<IComment>();
 
@@ -26,8 +15,9 @@ const postsSlice = createSlice({
         comments: commentsAdapter.getInitialState({ status: "idle" }),
     },
     reducers: {
-        postsReceived: (state, action) =>
-            postsAdapter.setAll(state.items, action.payload),
+        postsReceived: (state, action) => {
+            postsAdapter.setAll(state.items, action.payload)
+        },
     },
     extraReducers: (builder) => {
         builder.addMatcher(postsApi.endpoints.getPosts.matchFulfilled, (state, action) => {
@@ -45,25 +35,25 @@ export default postsSlice.reducer;
 export const {
     selectAll: selectAllPosts,
     selectById: selectPostById
-} = postsAdapter.getSelectors((state) => state.posts.items);
+} = postsAdapter.getSelectors((state : RootState) => state.posts.items);
 
 
 export const {
     selectAll: selectAllComments,
     selectById: selectCommentById
-} = commentsAdapter.getSelectors((state) => state.posts.comments);
+} = commentsAdapter.getSelectors((state : RootState) => state.posts.comments);
 
 export const selectPostsByUserId = createSelector(
     [
         selectAllPosts,
-        (state, userId) => userId
+        (_state : RootState, userId : number) => userId
     ],
     (posts, userId) => posts.filter(post => post.userId === userId)
 );
 export const selectCommentsByPostId = createSelector(
     [
         selectAllComments,
-        (state, postId) => postId
+        (_state : RootState, postId : number) => postId
     ],
     (comments, postId) => comments.filter(comment => comment.postId === postId)
 );

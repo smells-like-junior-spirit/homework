@@ -1,21 +1,21 @@
 import styles from './Modal.module.css'
 import { createPortal } from "react-dom";
+import { type PropsWithChildren, type MouseEvent } from 'react';
 
-interface IModal {
+interface ModalProps {
     isOpen?: boolean;
     onClose?: () => void;
-    children: React.ReactNode;
 }
 
-const Modal = ({ isOpen, onClose, children }: IModal) => {
+const Modal = ({ isOpen, onClose, children }: PropsWithChildren<ModalProps>) => {
 
     if (!isOpen) return null;
 
     return (createPortal(
         <div className={styles.overlay} onClick={onClose}>
-            <div className={styles.content} onClick={(e) => e.stopPropagation()} >
+            <div className={styles.content} onClick={(e: MouseEvent<HTMLDivElement>) =>
+                e.stopPropagation()} >
                 {children}
-                {/* <button className={styles.button} onClick={onClose}>Закрыть окно</button> */}
             </div>
         </div >,
         document.body
@@ -23,7 +23,7 @@ const Modal = ({ isOpen, onClose, children }: IModal) => {
     )
 }
 
-const ModalHeader = ({ children }: IModal) => {
+const ModalHeader = ({ children }: PropsWithChildren) => {
     return (
         <div className={styles.modalHeader}>{children}</div>
     )
@@ -31,7 +31,7 @@ const ModalHeader = ({ children }: IModal) => {
 
 Modal.Header = ModalHeader;
 
-const ModalBody = ({ children }: IModal) => {
+const ModalBody = ({ children }: PropsWithChildren) => {
     return (
         <div className={styles.modalBody}>{children}</div>
     )
@@ -39,7 +39,7 @@ const ModalBody = ({ children }: IModal) => {
 
 Modal.Body = ModalBody;
 
-const ModalFooter = ({ children }: IModal) => {
+const ModalFooter = ({ children }: PropsWithChildren) => {
     return (
         <div className={styles.modalFooter}>{children}</div>
     )

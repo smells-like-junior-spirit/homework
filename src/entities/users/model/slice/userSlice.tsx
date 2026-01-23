@@ -1,19 +1,9 @@
 import { createEntityAdapter, createSlice, createSelector } from "@reduxjs/toolkit";
 import { albumsApi } from "../../../albums/api/albumsApi";
 import { todosApi } from "../../../todos/api/todosApi";
-
-interface IAlbum {
-    userId: number;
-    id: number;
-    title: string;
-}
-
-interface ITodo {
-    userId: number;
-    id: number;
-    title: string;
-    completed: boolean;
-}
+import { type IAlbum } from "../../../albums/model/types";
+import { type ITodo } from "../../../todos/model/types";
+import { type RootState } from "../../../../app/providers/store/store";
 
 const albumsAdapter = createEntityAdapter<IAlbum>();
 const todosAdapter = createEntityAdapter<ITodo>();
@@ -25,7 +15,6 @@ const usersSlice = createSlice({
         todos: todosAdapter.getInitialState({ status: "idle" }),
     },
     reducers: {
-        // usersReceived: usersAdapter.setAll,
     },
     extraReducers: (builder) => {
 
@@ -38,25 +27,22 @@ const usersSlice = createSlice({
     }
     });
 
-// export const { usersReceived } = usersSlice.actions;
 export default usersSlice.reducer;
 
 export const {
     selectAll: selectAllAlbums,
     selectById: selectAlbumById
-} = albumsAdapter.getSelectors((state) => state.users.albums);
+} = albumsAdapter.getSelectors((state : RootState) => state.users.albums);
 
 export const {
     selectAll: selectAllTodos,
     selectById: selectTodosById
-} = todosAdapter.getSelectors((state) => state.users.todos);
-
-
+} = todosAdapter.getSelectors((state : RootState) => state.users.todos);
 
 export const selectAlbumsByUserId = createSelector(
     [
         selectAllAlbums,
-        (state, userId) => userId
+        (_state, userId) => userId
     ],
     (albums, userId) => albums.filter(album => album.userId === userId)
 );
@@ -64,7 +50,7 @@ export const selectAlbumsByUserId = createSelector(
 export const selectTodosByUserId = createSelector(
     [
         selectAllTodos,
-        (state, userId) => userId
+        (_state, userId) => userId
     ],
     (todos, userId) => todos.filter(todos => todos.userId === userId)
 );

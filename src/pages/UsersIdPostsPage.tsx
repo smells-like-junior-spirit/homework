@@ -1,7 +1,10 @@
 import { useParams } from "react-router";
-import usePosts from "../features/PostList/model/hooks/usePosts";
+// import usePosts from "../features/PostList/model/hooks/usePosts";
 import styles from '../entities/post/ui/PostCard.module.css'
 import { useTheme } from "../shared/lib/theme/useTheme";
+import { useSelector } from "react-redux";
+import { selectPostsByUserId } from "../entities/posts/model/slice/postSlice";
+import { useGetPostsQuery } from "../entities/posts/api/postsApi";
 
 type Theme = 'light' | 'dark';
 
@@ -15,8 +18,13 @@ const UsersIdPostsPage = () => {
     const { id } = useParams<{ id: string }>();
     const userId = Number(id);
 
-    const { isLoading, posts } = usePosts();
-    const filteredByUserIdPosts = posts.filter(post => post.userId === userId);
+    // const { isLoading, posts } = usePosts();
+    const {isLoading} = useGetPostsQuery();
+
+    // const filteredByUserIdPosts = posts.filter(post => post.userId === userId);
+    const filteredByUserIdPosts = useSelector((state) =>
+        selectPostsByUserId(state, userId)
+    );
 
     const { theme } = useTheme() as IThemeContext;
 

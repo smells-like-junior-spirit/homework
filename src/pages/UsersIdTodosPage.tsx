@@ -1,7 +1,11 @@
 import { useParams } from "react-router";
-import usePosts from "../features/PostList/model/hooks/usePosts";
+// import usePosts from "../features/PostList/model/hooks/usePosts";
 import styles from '../entities/post/ui/PostCard.module.css'
 import { useTheme } from "../shared/lib/theme/useTheme";
+import { useSelector } from "react-redux";
+// import { selectAllTodos } from "../entities/users/model/slice/userSlice";
+import { useGetTodosQuery } from "../entities/todos/api/todosApi";
+import { selectTodosByUserId } from "../entities/users/model/slice/userSlice";
 
 type Theme = 'light' | 'dark';
 
@@ -15,8 +19,14 @@ const UsersIdTodosPage = () => {
     const { id } = useParams<{ id: string }>();
     const userId = Number(id);
 
-    const { isLoading, todos } = usePosts();
-    const filteredByUserIdTodos = todos.filter(todo => todo.userId === userId);
+    // const { isLoading, todos } = usePosts();
+    const { isLoading } = useGetTodosQuery();
+
+    // const filteredByUserIdTodos = todos.filter(todo => todo.userId === userId);
+    // const filteredByUserIdTodos = useSelector((state) =>
+    //     selectAllTodos(state).filter(todo => todo.userId === userId));
+    const filteredByUserIdTodos = useSelector((state) =>
+        selectTodosByUserId(state, userId));
 
     const { theme } = useTheme() as IThemeContext;
 

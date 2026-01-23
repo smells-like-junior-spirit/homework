@@ -5,13 +5,7 @@ import { useTheme } from "../shared/lib/theme/useTheme";
 import { useSelector } from "react-redux";
 import { selectPostById } from "../entities/posts/model/slice/postSlice";
 import { useGetPostsQuery } from "../entities/posts/api/postsApi";
-
-type Theme = 'light' | 'dark';
-
-interface IThemeContext {
-    theme: Theme;
-    toggleTheme: () => void;
-}
+import { type RootState } from "../app/providers/store/store";
 
 const PostsIdPage = () => {
 
@@ -21,9 +15,9 @@ const PostsIdPage = () => {
     // const { isLoading, posts } = usePosts();
     // const filteredByIdPost = posts.filter(post => post.id === postId);
     const {isLoading} = useGetPostsQuery();
-    const filteredByIdPost = useSelector((state) => selectPostById(state, postId));
+    const filteredByIdPost = useSelector((state : RootState) => selectPostById(state, postId));
 
-    const { theme } = useTheme() as IThemeContext;
+    const { theme } = useTheme();
 
     if (isLoading) {
         return <div>Идет загрузка...</div>

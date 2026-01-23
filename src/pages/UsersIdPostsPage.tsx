@@ -5,13 +5,7 @@ import { useTheme } from "../shared/lib/theme/useTheme";
 import { useSelector } from "react-redux";
 import { selectPostsByUserId } from "../entities/posts/model/slice/postSlice";
 import { useGetPostsQuery } from "../entities/posts/api/postsApi";
-
-type Theme = 'light' | 'dark';
-
-interface IThemeContext {
-    theme: Theme;
-    toggleTheme: () => void;
-}
+import { type RootState } from "../app/providers/store/store";
 
 const UsersIdPostsPage = () => {
 
@@ -22,11 +16,11 @@ const UsersIdPostsPage = () => {
     const {isLoading} = useGetPostsQuery();
 
     // const filteredByUserIdPosts = posts.filter(post => post.userId === userId);
-    const filteredByUserIdPosts = useSelector((state) =>
+    const filteredByUserIdPosts = useSelector((state : RootState) =>
         selectPostsByUserId(state, userId)
     );
 
-    const { theme } = useTheme() as IThemeContext;
+    const { theme } = useTheme();
 
     if (isLoading) {
         return <div>Идет загрузка...</div>
@@ -37,7 +31,7 @@ const UsersIdPostsPage = () => {
             {filteredByUserIdPosts.map((post) =>
                 <div key={post.id} className={`${styles.postCard} ${theme === 'light' ? styles.light : styles.dark}`}>
                     <div className={styles.id}>
-                        {userId}
+                        {post.id}
                     </div>
 
                     <div className={styles.main}>

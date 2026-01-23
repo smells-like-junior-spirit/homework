@@ -6,13 +6,7 @@ import { useSelector } from "react-redux";
 // import { selectAllTodos } from "../entities/users/model/slice/userSlice";
 import { useGetTodosQuery } from "../entities/todos/api/todosApi";
 import { selectTodosByUserId } from "../entities/users/model/slice/userSlice";
-
-type Theme = 'light' | 'dark';
-
-interface IThemeContext {
-    theme: Theme;
-    toggleTheme: () => void;
-}
+import { type RootState } from "../app/providers/store/store";
 
 const UsersIdTodosPage = () => {
 
@@ -25,10 +19,10 @@ const UsersIdTodosPage = () => {
     // const filteredByUserIdTodos = todos.filter(todo => todo.userId === userId);
     // const filteredByUserIdTodos = useSelector((state) =>
     //     selectAllTodos(state).filter(todo => todo.userId === userId));
-    const filteredByUserIdTodos = useSelector((state) =>
+    const filteredByUserIdTodos = useSelector((state : RootState) =>
         selectTodosByUserId(state, userId));
 
-    const { theme } = useTheme() as IThemeContext;
+    const { theme } = useTheme();
 
     if (isLoading) {
         return <div>Идет загрузка...</div>

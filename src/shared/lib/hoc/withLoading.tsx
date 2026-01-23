@@ -1,13 +1,19 @@
+import { type ComponentType, type PropsWithChildren } from "react"
 
-const withLoading = (WrappedComponent: any) => {
-    return function ComponentWithLoading({ isLoading, ...props }: any) {
+interface WithLoadingProps {
+    isLoading: boolean
+}
+
+const withLoading = <T extends object>(WrappedComponent: ComponentType<T>) => {
+    return function ComponentWithLoading({ isLoading, ...props }:
+        PropsWithChildren<T & WithLoadingProps>) {
         if (isLoading) {
             return (
                 <div>Идёт загрузка...</div>
             )
         }
         return (
-            <WrappedComponent {...props}></WrappedComponent>
+            <WrappedComponent {...props as T}></WrappedComponent>
         )
     }
 }

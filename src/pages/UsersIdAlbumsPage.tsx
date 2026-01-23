@@ -6,13 +6,7 @@ import { useGetAlbumsQuery } from "../entities/albums/api/albumsApi";
 import { useSelector } from "react-redux";
 // import { selectAllAlbums } from "../entities/users/model/slice/userSlice";
 import { selectAlbumsByUserId } from "../entities/users/model/slice/userSlice";
-
-type Theme = 'light' | 'dark';
-
-interface IThemeContext {
-    theme: Theme;
-    toggleTheme: () => void;
-}
+import { type RootState } from "../app/providers/store/store";
 
 const UsersIdAlbumsPage = () => {
 
@@ -25,10 +19,10 @@ const UsersIdAlbumsPage = () => {
     // const filteredByUserIdAlbums = albums.filter(album => album.userId === userId);
     // const filteredByUserIdAlbums = useSelector((state) =>
     //     selectAllAlbums(state).filter(album => album.userId === userId));
-    const filteredByUserIdAlbums = useSelector((state) =>
+    const filteredByUserIdAlbums = useSelector((state : RootState) =>
         selectAlbumsByUserId(state, userId));
 
-    const { theme } = useTheme() as IThemeContext;
+    const { theme } = useTheme();
 
     if (isLoading) {
         return <div>Идет загрузка...</div>

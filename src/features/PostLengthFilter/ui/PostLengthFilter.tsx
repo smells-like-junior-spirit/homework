@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type ChangeEvent } from "react";
 
 interface ISetMinLenght {
     setMinLength: (value: number) => void;
@@ -8,7 +8,7 @@ const PostLengthFilter = ({ setMinLength }: ISetMinLenght) => {
 
     const [length, setLength] = useState<number>(0);
 
-    const onChangeHandler = (e: any) => {
+    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         const value = Number(e.target.value);
         setLength(value);
         setMinLength(value);

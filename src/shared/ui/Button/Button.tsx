@@ -1,6 +1,12 @@
 import styles from './Button.module.css'
 
-const Button = ({ onClickHandler, value, variant }) => {
+interface ButtonProps {
+    onClickHandler: React.MouseEventHandler<HTMLButtonElement>;
+    value: string;
+    variant: 'light' | 'dark';
+}
+
+const Button = ({ onClickHandler, value, variant } : ButtonProps) => {
 
     return (
         <button

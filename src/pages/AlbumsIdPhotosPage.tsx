@@ -3,13 +3,6 @@ import usePosts from "../features/PostList/model/hooks/usePosts";
 import styles from '../entities/post/ui/PostCard.module.css'
 import { useTheme } from "../shared/lib/theme/useTheme";
 
-type Theme = 'light' | 'dark';
-
-interface IThemeContext {
-    theme: Theme;
-    toggleTheme: () => void;
-}
-
 const AlbumsIdPhotosPage = () => {
 
     const { id } = useParams<{ id: string }>();
@@ -18,7 +11,7 @@ const AlbumsIdPhotosPage = () => {
     const { isLoading, photos } = usePosts();
     const filteredByAlbumIdPhotos = photos.filter(photo => photo.albumId === albumId);
 
-    const { theme } = useTheme() as IThemeContext;
+    const { theme } = useTheme();
 
     if (isLoading) {
         return <div>Идет загрузка...</div>

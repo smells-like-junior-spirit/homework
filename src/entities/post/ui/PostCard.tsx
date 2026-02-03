@@ -4,32 +4,19 @@ import Button from '../../../shared/ui/Button/Button'
 import { useCallback, useState } from 'react';
 import { useMemo } from 'react';
 import CommentList from '../../../widgets/CommentList/ui/CommentList';
+import { type IComment } from '../../comments/model/types';
 
-
-type Theme = 'light' | 'dark';
-
-interface IThemeContext {
-    theme: Theme;
-    toggleTheme: () => void;
-}
-
-interface IComments {
-    postId: number;
-    id: number;
-    name: string;
-    email: string;
-    body: string;
-}
-
-const PostCard = ({ userId, id, title, body, comments }: {
+interface PostCardProps {
     userId: number,
     id: number,
     title: string,
     body: string,
-    comments: IComments[],
-}) => {
+    comments: IComment[],
+}
 
-    const { theme } = useTheme() as IThemeContext;
+const PostCard = ({ userId, id, title, body, comments }: PostCardProps) => {
+
+    const { theme } = useTheme();
 
     const postComments = useMemo(() => {
         return comments.filter((comment) => comment.postId === id)
